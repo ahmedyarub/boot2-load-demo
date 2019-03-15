@@ -11,7 +11,7 @@ public class Boot1Application {
 
     @Bean
     public MeterRegistryCustomizer<MeterRegistry> commonTags() {
-        return (registry) -> registry.config()
+        return registry -> registry.config()
                 .commonTags("application", "boot1-load-sample");
     }
 

@@ -26,7 +26,7 @@ public class FiltersRegisteringService {
 
     @PostConstruct
     public void initialize() {
-        for (ZuulFilter filter: filters) {
+        for (ZuulFilter filter : filters) {
             this.filterRegistry.put(filter.filterName(), filter);
         }
     }

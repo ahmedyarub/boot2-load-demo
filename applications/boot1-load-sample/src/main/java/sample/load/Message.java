@@ -52,7 +52,7 @@ public class Message {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Message{");
+        final StringBuilder sb = new StringBuilder("Message{");
         sb.append("id='").append(id).append('\'');
         sb.append(", payload='").append(payload).append('\'');
         sb.append(", delay=").append(delay);

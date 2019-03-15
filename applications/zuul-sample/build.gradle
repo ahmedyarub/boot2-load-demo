@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.1.2.RELEASE'
         wireMockVersion = "2.8.0"
     }
     repositories {
@@ -18,7 +18,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'org.bk.samples'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ repositories {
 
 
 ext {
-    springCloudVersion = 'Finchley.M9'
+    springCloudVersion = 'Greenwich.RELEASE'
 }
 
 dependencies {

@@ -34,8 +34,8 @@ public class Bootstrap {
         new Bootstrap().start();
     }
 
-    
-    public void start() {
+
+    private void start() {
         System.out.println("Zuul Sample: starting up.");
         long startTime = System.currentTimeMillis();
         int exitCode = 0;
@@ -54,7 +54,7 @@ public class Bootstrap {
 
             server.start(true);
         }
-        catch (Throwable t) {
+        catch (Exception t) {
             t.printStackTrace();
             System.err.println("###############");
             System.err.println("Zuul Sample: initialization failed. Forcing shutdown now.");

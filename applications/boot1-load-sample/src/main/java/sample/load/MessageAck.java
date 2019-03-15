@@ -51,7 +51,7 @@ public class MessageAck {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("MessageAck{");
+        final StringBuilder sb = new StringBuilder("MessageAck{");
         sb.append("id='").append(id).append('\'');
         sb.append(", received='").append(received).append('\'');
         sb.append(", ack='").append(ack).append('\'');
