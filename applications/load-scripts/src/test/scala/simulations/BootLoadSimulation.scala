@@ -15,7 +15,7 @@ class BootLoadSimulation extends Simulation {
   val httpConf: HttpProtocolBuilder = http.baseUrl(baseUrl)
 
   val scn: ScenarioBuilder = scenario("Passthrough Page")
-    .repeat(30) {
+    .repeat(10) {
       exec(
         http("passthrough-messages")
           .get("/index.html")
@@ -23,5 +23,5 @@ class BootLoadSimulation extends Simulation {
       )
     }
 
-  setUp(scn.inject(rampUsers(sim_users).during(30 seconds)).protocols(httpConf))
+  setUp(scn.inject(rampUsers(sim_users).during(10.seconds)).protocols(httpConf))
 }
