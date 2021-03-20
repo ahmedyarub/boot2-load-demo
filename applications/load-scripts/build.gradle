@@ -5,9 +5,11 @@ repositories {
 }
 
 dependencies {
-    testCompile 'org.scala-lang:scala-library:2.12.9'
-    testCompile 'io.gatling:gatling-app:3.2.1'
-    testCompile 'io.gatling.highcharts:gatling-charts-highcharts:3.2.1'
+    testCompile 'org.scala-lang:scala-library:2.13.5'
+    testCompile 'io.gatling:gatling-app:3.5.1'
+    testCompile 'io.gatling:gatling-jdbc:3.5.1'
+    testCompile 'io.gatling.highcharts:gatling-charts-highcharts:3.5.1'
+    testCompile(group: 'org.postgresql', name: 'postgresql', version: '42.2.19')
 }
 
 task gatlingRun(type: JavaExec) {
@@ -21,7 +23,6 @@ task gatlingRun(type: JavaExec) {
     main = "io.gatling.app.Gatling"
     args = ['-s', 'simulations.BootLoadSimulation',
             '-sf', 'test/resources',
-            '-df', 'test/resources',
             '-rf', "${buildDir}/reports/gatling"
     ]
 }

@@ -2,7 +2,7 @@ package sample.load
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
-import org.springframework.web.reactive.function.BodyInserters.fromObject
+import org.springframework.web.reactive.function.BodyInserters.fromValue
 import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToMono
@@ -18,21 +18,20 @@ class PassThroughHandler(private val webClient: WebClient) {
 
         return messageMono.flatMap { message ->
             passThrough(message)
-                    .flatMap { messageAck ->
-                        ServerResponse.ok().body(fromObject(messageAck))
-                    }
+                .flatMap { messageAck ->
+                    ServerResponse.ok().body(fromValue(messageAck))
+                }
         }
     }
 
     fun passThrough(message: Message): Mono<MessageAck> {
         return webClient.post()
-                .uri("/messages")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                .body(fromObject(message))
-                .exchange()
-                .flatMap { response: ClientResponse ->
-                    response.bodyToMono<MessageAck>()
-                }
+            .uri("/messages")
+            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+            .body(fromValue(message))
+            .exchangeToMono { response: ClientResponse ->
+                response.bodyToMono()
+            }
     }
 }
