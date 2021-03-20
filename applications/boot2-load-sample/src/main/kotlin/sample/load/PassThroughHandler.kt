@@ -24,7 +24,7 @@ class PassThroughHandler(private val webClient: WebClient) {
         }
     }
 
-    fun passThrough(message: Message): Mono<MessageAck> {
+    private fun passThrough(message: Message): Mono<MessageAck> {
         return webClient.post()
             .uri("/messages")
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
