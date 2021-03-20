@@ -4,7 +4,6 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import io.gatling.jdbc.Predef._
 
 import scala.concurrent.duration._
 
@@ -33,7 +32,10 @@ class BootLoadSimulation extends Simulation {
     //.feed(sqlQueryFeeder)
     .repeat(30) {
       exec(
-        http("get_offer").get(System.getProperty("TARGET_URL") + "README.md")
+        http("get_offer")
+          .get("http://localhost:8001/")
+          .header("Content-Type", "text/html")
+          .header("Host", "localhost")
       )
     }
 
